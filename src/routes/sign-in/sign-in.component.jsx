@@ -1,9 +1,17 @@
+import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 import { signInWithGooglePopup ,createUserDocumentFromAuth} from "../../utils/firebase/firebase.utils";
 
 const SignIn = () => {
     const logGoogleUser = async () => {
-        const {user} = await signInWithGooglePopup();
-        /*const userDocRef =*/ await createUserDocumentFromAuth(user);
+        try{
+            const {user} = await signInWithGooglePopup();
+            /*const userDocRef =*/ await createUserDocumentFromAuth(user);
+        }catch(error){
+            if(error.code === 'uth/popup-closed-by-user'){
+                console.log("user closed google pop-up login")
+                return;
+            }
+        }
     }
     return (
         <div>
@@ -11,6 +19,7 @@ const SignIn = () => {
             <button onClick={logGoogleUser}>
                 Sign In With Google Popup
             </button>
+            <SignUpForm />
         </div>
     )
 };
