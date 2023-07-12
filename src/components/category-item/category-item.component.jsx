@@ -11,7 +11,7 @@ const CategoryItem = ({category}) => {
           />
           <div className="category-body-container">
             <h2> {title} </h2>
-            <Button> Shop Now </Button>
+            <Button buttonType='inverted'> Shop Now </Button>
           </div>
         </div>
     )
