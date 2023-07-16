@@ -6,9 +6,9 @@ import './navigation.styles.scss';
 import {ReactComponent as CrownLogo} from '../../assets/crown.svg'
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import { CartContext } from "../../context/cart.context";
+import { CartContext } from "../../contexts/cart.context";
 
-import { UserContext } from "../../context/user.context";
+import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 const Navigation = () => {
@@ -28,10 +28,12 @@ const Navigation = () => {
                 </Link>
                 {
                   currentUser ? (
-                     <span className="nav-link" onClick={signOutUser}>SIGN OUT</span>
+                    <Link className="nav-link">
+                     <span onClick={signOutUser}>SIGN OUT</span>
+                     </Link> 
                   ) : (
                     <Link className="nav-link" to='/auth'>
-                      <span className="nav-link">SIGN IN</span>
+                      <span >SIGN IN</span>
                     </Link> 
                 )}
                 <CartIcon/>
